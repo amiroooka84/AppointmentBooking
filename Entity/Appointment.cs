@@ -9,6 +9,7 @@ namespace Entity
     public class Appointment : EntityBase
     {
         public string DateTime { get; set; }
+        public DateTime Time { get; set; }
         public bool BookingStatus { get; set; }
         public int CustomerId { get; set; }
     }

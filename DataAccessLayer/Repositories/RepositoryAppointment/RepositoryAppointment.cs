@@ -16,6 +16,21 @@ namespace DataAccessLayer.Repositories.RepositoryAppointment
         {
         }
 
+        public Appointment AddCustomerToAppointment(int appointmentId, int customerId)
+        {
+            var appointment = _Query.SingleOrDefault(i => i.id == appointmentId);
+            if (appointment == null) return null;
+            if (appointment.CustomerId != 0 && appointment.BookingStatus)
+            {
+                return null;
+            }
+            appointment.CustomerId = customerId;
+            appointment.BookingStatus = true;
+            var res = _Query.Entry(appointment).Entity;
+            _dbContext.SaveChanges();
+            return res;
+        }
+
         public IEnumerable<Appointment> GetByDate(DateTime date)
         {
             var res = _Query.Where(i=> ConvertDate.ConvertShamsiToMiladi(i.DateTime) == date);

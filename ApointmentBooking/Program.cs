@@ -1,3 +1,5 @@
+using DataAccessLayer;
+
 namespace ApointmentBooking
 {
     public class Program
@@ -6,6 +8,7 @@ namespace ApointmentBooking
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDataAccessLayerServices(builder.Configuration);
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

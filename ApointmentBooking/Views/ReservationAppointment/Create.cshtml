@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Entity.Appointment>
+
+@{
+    ViewData["Title"] = "Create";
+    
+
+}
+
+<h1>Create</h1>
+
+<h4>AppointmentViewModel</h4>
+@ViewData["result"]
+<hr />
+<table>
+    <tr>
+        <th>تاریخ</th>
+        <th>ساعت</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+        <tr>
+            <td>@item.DateTime</td>
+            <td>@DataAccessLayer.Services.ConvertDate.ConvertShamsiToMiladi(item.DateTime).Hour</td>
+        </tr>
+    }
+</table>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input  type="number" maxlength="10" name="appointmentId" value="2" class="Custom-Input-1"  />
+            <input  type="text" maxlength="100" name="customer.FullName" value="" class="Custom-Input-1" placeholder="نام و نام خانوادگی" />
+            <input  type="number" maxlength="20" name="customer.NationalCode" value="" class="Custom-Input-1" placeholder="کد ملی" />
+            <input  type="text" maxlength="11" name="customer.PhoneNumber" value="" class="Custom-Input-1" placeholder="شماره تماس" />
+            <button>ارسال کد</button>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

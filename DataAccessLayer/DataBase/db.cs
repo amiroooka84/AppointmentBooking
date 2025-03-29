@@ -19,7 +19,7 @@ namespace DataAccessLayer.DataBase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=AppointmentBooking;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=AppointmentBooking;Integrated Security=True;TrustServerCertificate=True");
             base.OnConfiguring(optionsBuilder);
         }
 

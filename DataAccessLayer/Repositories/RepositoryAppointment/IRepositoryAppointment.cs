@@ -13,5 +13,6 @@ namespace DataAccessLayer.Repositories.RepositoryAppointment
         //public Appointment GetByPhoneNumber(string phoneNumber);
         public IEnumerable<Appointment> GetByStatusAndDate(bool status , DateTime date);
         public IEnumerable<Appointment> GetByDate(DateTime date);
+        public Appointment AddCustomerToAppointment(int appointmentId , int customerId);
     }
 }
